@@ -1,0 +1,17 @@
+{
+  "name": "ethers-scripts",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/0xsiddharthks/ethers-scripts.git",
+  "author": "Siddharth Sharma <ssiddharth2010@icloud.com>",
+  "license": "MIT",
+  "devDependencies": {
+    "ts-node": "^10.9.1",
+    "typescript": "^5.0.4"
+  },
+  "dependencies": {
+    "@types/node": "^18.15.11",
+    "dotenv": "^16.0.3",
+    "ethers": "^6.3.0"
+  }
+}
