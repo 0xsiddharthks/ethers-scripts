@@ -1,22 +1,10 @@
 import { ethers } from "ethers";
 import setup from "../utils/environment";
+import { printAccountBalance } from "../utils/account";
 
 setup();
 
 const RECEIVER_ADDRESS = "0xd0a5ed1913b16b1233afed97df38535fe2560933";
-
-const printAccountBalance = async (
-  account_address: ethers.AddressLike,
-  provider: ethers.Provider
-) => {
-  await provider.getBalance(account_address).then((balance) => {
-    console.log(
-      `Account balance for ${account_address} --> ${ethers.formatEther(
-        balance
-      )} ETH`
-    );
-  });
-};
 
 const main = async () => {
   const provider = new ethers.AlchemyProvider(
@@ -24,7 +12,7 @@ const main = async () => {
     process.env.ALCHEMY_API_KEY
   );
 
-  const wallet = new ethers.Wallet(
+  const signer = new ethers.Wallet(
     process.env.WALLET_PRIVATE_KEY as string,
     provider
   );
@@ -33,7 +21,7 @@ const main = async () => {
   printAccountBalance(process.env.WALLET_PUBLIC_KEY as string, provider);
   printAccountBalance(RECEIVER_ADDRESS as string, provider);
 
-  const trx = await wallet.sendTransaction({
+  const trx = await signer.sendTransaction({
     to: RECEIVER_ADDRESS,
     value: ethers.parseEther("0.001"),
   });

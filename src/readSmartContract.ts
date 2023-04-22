@@ -1,9 +1,9 @@
 import { ethers } from "ethers";
+import { DAI_CONTRACT_ADDRESS } from "../constants";
 import setup from "../utils/environment";
 
 setup();
 
-const DAI_CONTRACT_ADDRESS = "0x6b175474e89094c44da98b954eedeac495271d0f";
 const ERC_20_ABI = [
   "function balanceOf(address) view returns (uint256)",
   "function totalSupply() view returns (uint256)",
