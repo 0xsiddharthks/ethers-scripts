@@ -13,12 +13,12 @@ const main = async () => {
   );
 
   const signer = new ethers.Wallet(
-    process.env.WALLET_PRIVATE_KEY as string,
+    process.env.SIGNER_PRIVATE_KEY as string,
     provider
   );
 
   console.log("account balance before transaction: ");
-  printAccountBalance(process.env.WALLET_PUBLIC_KEY as string, provider);
+  printAccountBalance(process.env.SIGNER_PUBLIC_KEY as string, provider);
   printAccountBalance(RECEIVER_ADDRESS as string, provider);
 
   const trx = await signer.sendTransaction({
@@ -29,7 +29,7 @@ const main = async () => {
   console.log(`transaction mined, hash: ${trx.hash}`);
 
   console.log("account balance after transaction: ");
-  printAccountBalance(process.env.WALLET_PUBLIC_KEY as string, provider);
+  printAccountBalance(process.env.SIGNER_PUBLIC_KEY as string, provider);
   printAccountBalance(RECEIVER_ADDRESS as string, provider);
 };
 

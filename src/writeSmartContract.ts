@@ -1,7 +1,7 @@
 import { ethers } from "ethers";
 import setup from "../utils/environment";
 import { printAccountERC20Balance } from "../utils/account";
-import { LINK_CONTRACT_SEPOLIA_ADDRESS } from "../constants";
+import { LINK_CONTRACT_ADDRESS_SEPOLIA } from "../constants";
 
 setup();
 
@@ -19,24 +19,24 @@ const main = async () => {
   );
 
   const signer = new ethers.Wallet(
-    process.env.WALLET_PRIVATE_KEY as string,
+    process.env.SIGNER_PRIVATE_KEY as string,
     provider
   );
 
   const contract = new ethers.Contract(
-    LINK_CONTRACT_SEPOLIA_ADDRESS,
+    LINK_CONTRACT_ADDRESS_SEPOLIA,
     ERC_20_ABI,
     provider
   );
 
   const contractAsSigner = new ethers.Contract(
-    LINK_CONTRACT_SEPOLIA_ADDRESS,
+    LINK_CONTRACT_ADDRESS_SEPOLIA,
     ERC_20_ABI,
     signer
   );
 
   console.log("account balance before transaction: ");
-  printAccountERC20Balance(process.env.WALLET_PUBLIC_KEY as string, contract);
+  printAccountERC20Balance(process.env.SIGNER_PUBLIC_KEY as string, contract);
   printAccountERC20Balance(RECEIVER_ADDRESS, contract);
 
   const trx = await contractAsSigner.transfer(
@@ -47,7 +47,7 @@ const main = async () => {
   console.log(`transaction mined, hash: ${trx.hash}`);
 
   console.log("account balance after transaction: ");
-  printAccountERC20Balance(process.env.WALLET_PUBLIC_KEY as string, contract);
+  printAccountERC20Balance(process.env.SIGNER_PUBLIC_KEY as string, contract);
   printAccountERC20Balance(RECEIVER_ADDRESS, contract);
 };
 
