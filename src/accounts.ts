@@ -3,7 +3,7 @@ import setup from "../utils/environment";
 
 setup();
 
-const address = "0x5FbDB2315678afecb367f032d93F642f64180aa3";
+const ACCOUNT_ADDRESS = "0x5FbDB2315678afecb367f032d93F642f64180aa3";
 
 const main = async () => {
   const provider = new ethers.AlchemyProvider(
@@ -11,9 +11,11 @@ const main = async () => {
     process.env.ALCHEMY_API_KEY
   );
 
-  await provider.getBalance(address).then((balance) => {
+  await provider.getBalance(ACCOUNT_ADDRESS).then((balance) => {
     console.log(
-      `Account balance for ${address} --> ${ethers.formatEther(balance)} ETH`
+      `Account balance for ${ACCOUNT_ADDRESS} --> ${ethers.formatEther(
+        balance
+      )} ETH`
     );
   });
 };
